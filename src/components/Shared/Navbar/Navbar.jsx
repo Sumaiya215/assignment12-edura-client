@@ -3,7 +3,8 @@ import logo from '../../../assets/logo .png'
 import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
-    const { user,logOut } = useAuth();
+    const { user, logOut} = useAuth();
+
     return (
         <div>
             <nav className="navbar bg-base-100 shadow-md px-4 md:px-10">

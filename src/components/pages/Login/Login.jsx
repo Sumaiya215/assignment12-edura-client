@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import useAuth from '../../../hooks/useAuth';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
@@ -50,15 +50,17 @@ const Login = () => {
                         </label>
                         <input type="password" name="password" placeholder="password" className="input h-8 text-sm input-bordered" required />
                         <label className="label">
-                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                            <a href="#" className="label-text-alt  link link-hover">Forgot password?</a>
                         </label>
                     </div>
-                    <div className="form-control mt-6">
-                        <button className="btn h-8 min-h-8 bg-fuchsia-700 text-white">Login</button>
+                    <div className="form-control mt-2">
+                        <button className="btn h-10 min-h-8 bg-fuchsia-700 text-white">Login</button>
                     </div>
                 </form>
                 <div className="divider mt-0 mb-2 h-2 px-6 text-sm">OR</div>
                 <SocialLogin></SocialLogin>
+                <p className=' mb-6 px-6 text-sm text-center '>Don't have an account 
+                    <Link to='/signup' className='text-fuchsia-600 underline ml-2'>Sign Up</Link> </p>
             </div>
         </div>
     );

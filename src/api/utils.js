@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import useAxiosPublic from "../hooks/useAxiosPublic";
+const axiosPublic = useAxiosPublic();
 
 export const imageUpload = async imageData =>{
         const formData = new FormData();
@@ -12,6 +13,11 @@ export const imageUpload = async imageData =>{
      return data.data.display_url   
 }
 
-export const saveUser = async() =>{
-    
+export const saveUser = async user =>{
+    await axiosPublic.post(`/users/${user?.email}`,{
+        name: user?.name,
+        image: user?.photoURL,
+        email: user?.email,
+        role:user?.role
+    })
 }

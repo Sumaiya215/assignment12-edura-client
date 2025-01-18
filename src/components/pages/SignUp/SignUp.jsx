@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
-import { imageUpload } from '../../../api/utils.js'
+import { imageUpload, saveUser } from '../../../api/utils.js'
 import useAuth from '../../../hooks/useAuth'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin.jsx';
 
@@ -27,6 +27,10 @@ const SignUp = () => {
             //saving username & photo
             await updateUserProfile(name, photoURL)
             console.log(result);
+
+            //saving new user info in db
+            await saveUser({...result?.user, name, photoURL, role})
+
             toast.success('User Registration Successful!')
             navigate('/');
         } catch (err) {
@@ -79,11 +83,13 @@ const SignUp = () => {
                         </select>
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn h-8 min-h-8 bg-fuchsia-700 text-white">Sign Up</button>
+                        <button className="btn h-10 min-h-8 bg-fuchsia-700 text-white">Sign Up</button>
                     </div>
                 </form>
                 <div className="divider mt-0 mb-2 h-2 px-6 text-sm">OR</div>
                 <SocialLogin></SocialLogin>
+                <p className=' mb-6 px-6 text-sm text-center '>Already have an account 
+                    <Link to='/login' className='text-fuchsia-600 underline ml-2'>Login</Link> </p>
             </div>
         </div>
 

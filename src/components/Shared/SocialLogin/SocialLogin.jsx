@@ -3,6 +3,7 @@ import { FaGithub } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { saveUser } from "../../../api/utils";
 
 const SocialLogin = () => {
     const {signInWithGoogle, signInWithGithub, user} = useAuth();
@@ -16,14 +17,15 @@ const SocialLogin = () => {
             const data = await signInWithGoogle()
             const user = data?.user;
             const userData = {
-                uid: user.uid,
-                name: user.displayName,
-                email: user.email,
-                photoURL: user.photoURL,
-                role: 'student'
+                uid: user?.uid,
+                name: user?.displayName,
+                email: user?.email,
+                photoURL: user?.photoURL,
+                role: 'Student'
 
             };
             console.log('Google Login Success', userData)
+            await saveUser(userData)
             navigate(from, { replace: true })
             toast.success('Login Successful')
             return userData;
@@ -38,18 +40,22 @@ const SocialLogin = () => {
         try{
             const data = await signInWithGithub()
             const user = data?.user;
+
             const userData = {
-                uid: user.uid,
-                name: user.displayName,
-                email: user.email,
-                photoURL: user.photoURL,
-                role: 'student'
+                uid: user?.uid,
+                name: user?.displayName,
+                email: user?.email,
+                photoURL: user?.photoURL,
+                role: 'Student'
 
             };
             console.log('Github Login Success', userData)
+            await saveUser(userData)
             navigate(from, { replace: true })
             toast.success('Login Successful')
-            return userData;
+            // return userData;
+
+            
             
         }catch(err){
             console.log(err)
