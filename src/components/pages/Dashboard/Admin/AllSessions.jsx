@@ -43,16 +43,13 @@ const AllSessions = () => {
         }
     }
 
-    // Update session
-    const handleUpdate = async (id) => {
-        // update logic here
-    };
 
     // Delete Session
     const handleDelete = async (id) => {
         try{
-            await axiosSecure.delete(`/sessions/${id}`);
+            await axiosSecure.delete(`/sessions/delete/${id}`);
             toast.success('Session deleted successfully!')
+            refetch();
         } catch(error){
             console.error(error);
             toast.error('Failed to delete session')
@@ -95,7 +92,6 @@ const AllSessions = () => {
                             sessionData={sessionData}
                             onApprove={handleApprove}
                             onReject={handleReject}
-                            onUpdate={handleUpdate}
                             onDelete={handleDelete}
                             >
 

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import SessionApprovalModal from "../Modal/SessionApprovalModal";
+import { Link } from "react-router-dom";
 
 
-const SessionDataRow = ({sessionData, onApprove, onReject, onUpdate, onDelete}) => {
+const SessionDataRow = ({sessionData, onApprove, onReject,  onDelete}) => {
     const {
         _id,
         sessionTitle,
@@ -31,7 +32,6 @@ const SessionDataRow = ({sessionData, onApprove, onReject, onUpdate, onDelete}) 
         onApprove(_id, isPaid? fee: 0);
         setIsOpen(false);
     }
-
 
 
     return (
@@ -63,11 +63,9 @@ const SessionDataRow = ({sessionData, onApprove, onReject, onUpdate, onDelete}) 
                    )}
                    {status === 'approved' && (
                     <>
-                      <button 
-                        className="btn btn-xs btn-outline btn-info"
-                         onClick={() => onUpdate(_id)}>
-                            Update
-                      </button>
+                    <Link to={`/dashboard/all-sessions/${_id}`}>
+                      <button  className="btn btn-xs btn-outline btn-info">Update </button>
+                    </Link> 
                       <button
                        className="btn btn-xs btn-outline btn-error"
                         onClick={() => onDelete(_id)}>

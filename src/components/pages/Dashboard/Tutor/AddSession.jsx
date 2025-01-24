@@ -117,7 +117,7 @@ const AddSession = () => {
                     <label className="block text-sm font-medium mb-1">Status</label>
                     <select
                        {...register('status')}
-                        defaultValue="pending" className="select select-bordered bg-gray-100"  >
+                           className="select select-bordered bg-gray-100"  >
                         <option value="pending">Pending</option>
                         <option value="approved">Approved</option>
                         <option value="rejected">Rejected</option>
@@ -133,7 +133,7 @@ const AddSession = () => {
                 </div>
                 {/* Submit Button */}
                 <div className="md:col-span-2">
-                    <button type="submit" className="btn btn-primary w-full">Submit</button>
+                    <button type="submit" className="btn text-white bg-fuchsia-600 w-full">Create Session</button>
                 </div>
             </form>
         </div>
