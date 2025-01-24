@@ -49,7 +49,6 @@ const Dashboard = () => {
                    <FaUsers/> View All Users</NavLink></li>
                     <li><NavLink to='/dashboard/all-sessions'>
                     <HiOutlineViewGrid /> View All Study Session</NavLink></li>
-                
                     <li><NavLink to='/dashboard/all-materials'>
                     <FaList/> View All Materials</NavLink></li>
                     </>

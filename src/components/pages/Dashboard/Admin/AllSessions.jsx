@@ -94,7 +94,6 @@ const AllSessions = () => {
                             onReject={handleReject}
                             onDelete={handleDelete}
                             >
-
                             </SessionDataRow>)
                         }
                     </tbody>

@@ -66,15 +66,17 @@ const MySessions = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        approvedSessions.map(approvedSession => <tr key={approvedSession._id}>
+                                        approvedSessions.map(approvedSession => <tr key={approvedSession._id} >
                                             <th></th>
                                             <td>{approvedSession.sessionTitle}</td>
                                             <td>{approvedSession.sessionDuration}</td>
                                             <td>{approvedSession.registrationFee}</td>
                                             <td>{approvedSession.status}</td>
                                             <td>
-                                                <Link to='/dashboard/add-materials'>
-                                                    <button className="btn btn-xs btn-outline btn-accent">Upload Materials</button>
+                                                <Link to='/dashboard/add-materials' state={{approvedSession}}>
+                                                    <button 
+                                                   
+                                                    className="btn btn-xs btn-outline btn-accent">Upload Materials</button>
                                                 </Link>
 
                                             </td>
