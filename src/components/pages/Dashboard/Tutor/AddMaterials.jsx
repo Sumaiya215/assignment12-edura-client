@@ -50,7 +50,7 @@ const AddMaterials = () => {
             <title>Upload Materials</title>
         </Helmet>
         <div className="card w-3/4 lg:w-[50%] mx-auto mt-12 mb-22 shadow-lg">
-             <h1 className="text-lg h-0 text-center font-bold ">Add Materials</h1>
+             <h1 className="text-lg h-0 text-center font-bold ">Add Material</h1>
             <form onSubmit={handleSubmit} className="card-body" >
                 {/* title */}
                 <div className="form-control">
@@ -79,7 +79,7 @@ const AddMaterials = () => {
                 </div>
                 {/* button */}
                 <div className="form-control mt-6">
-                    <button type="submit" className="btn  bg-fuchsia-600 text-white">Upload Materials</button>
+                    <button type="submit" className="btn  bg-fuchsia-600 text-white">Upload Material</button>
                 </div>
             </form>
         </div>

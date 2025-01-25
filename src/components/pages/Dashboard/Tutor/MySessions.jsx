@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 
 const MySessions = () => {
     const axiosSecure = useAxiosSecure();
-
     const { user } = useAuth();
     const { data: approvedSessions = [], isLoading } = useQuery({
         queryKey: ['approvedSessions', user?.email],

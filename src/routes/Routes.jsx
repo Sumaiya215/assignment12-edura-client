@@ -23,6 +23,7 @@ import AllUsers from "../components/pages/Dashboard/Admin/AllUsers";
 import AllSessions from "../components/pages/Dashboard/Admin/AllSessions";
 import AllMaterials from "../components/pages/Dashboard/Admin/AllMaterials";
 import UpdateSession from "../components/pages/Dashboard/Admin/UpdateSession";
+import UpdateMaterials from "../components/pages/Dashboard/Tutor/UpdateMaterials";
 
  export const router = createBrowserRouter([
     {
@@ -80,6 +81,10 @@ import UpdateSession from "../components/pages/Dashboard/Admin/UpdateSession";
           {
             path:'my-materials',
             element:<TutorRoute><MyMaterials></MyMaterials></TutorRoute>
+          },
+          {
+            path:'my-materials/:id',
+            element:<TutorRoute><UpdateMaterials></UpdateMaterials></TutorRoute>
           },
           // admin routes
           {

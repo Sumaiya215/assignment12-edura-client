@@ -1,16 +1,14 @@
 import { useForm } from "react-hook-form"
-import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 const UpdateSession = () => {
-    const { user } = useAuth();
-    const { id } = useParams();
-   
-    const axiosSecure = useAxiosSecure()
+    const { id } = useParams(); 
+    const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
     // get a specific session
     const { data: session = [], isLoading } = useQuery({
         queryKey: ['session', id],
@@ -39,13 +37,13 @@ const UpdateSession = () => {
     // update session
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const onSubmit = async (data) => {
-        console.log(data);
+        // console.log(data);
 
         const updatedInfo = {
-            // sessionId: data._id,
+           
             sessionTitle: data.sessionTitle,
-            tutorName: user?.displayName,
-            tutorEmail: user?.email,
+            tutorName: data.tutorName,
+            tutorEmail: data.tutorEmail,
             sessionDuration: data.sessionDuration,
             registrationStartDate: data.registrationStartDate,
             registrationEndDate: data.registrationEndDate,
@@ -62,7 +60,8 @@ const UpdateSession = () => {
             console.log(res.data)
             if (res.data.modifiedCount) {
                 reset();
-                toast.success('Session Successfully Updated!')
+                toast.success('Session Successfully Updated!');
+                navigate('/dashboard/all-sessions')
             };
         } catch (error) {
             console.error(error)
@@ -77,7 +76,7 @@ const UpdateSession = () => {
             <Helmet>
                 <title>Update Session | Edura</title>
             </Helmet>
-            <div className="max-w-xl mx-auto shadow-md rounded-lg p-6 mt-20 mb-12 ">
+            <div className="w-4/5 lg:w-[60%] mx-auto shadow-md rounded-lg p-6 mt-20 mb-12 ">
                 <h1 className="text-2xl font bold text-center mb-6">Update Study Session</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Session Title */}
@@ -85,7 +84,7 @@ const UpdateSession = () => {
                         <label className="block text-sm font-medium mb-1">Session Title</label>
                         <input
                             type="text"{...register('sessionTitle')}
-                            defaultValue={sessionTitle} className="input input-bordered" required />
+                            defaultValue={sessionTitle} className="input input-bordered w-full" required />
                         {errors.sessionTitle && <span className="text-red-600 text-sm">Session Title is required</span>}
                     </div>
                     {/* Tutor Name */}
@@ -93,21 +92,21 @@ const UpdateSession = () => {
                         <label className="block text-sm font-medium mb-1">Tutor Name</label>
                         <input
                             type="text"{...register('tutorName')}
-                            defaultValue={tutorName} className="input input-bordered bg-gray-100" readOnly />
+                            defaultValue={tutorName} className="input input-bordered w-full bg-gray-100" readOnly />
                     </div>
                     {/* Tutor Email */}
                     <div>
                         <label className="block text-sm font-medium mb-1">Tutor Email</label>
                         <input
                             type="text"{...register('tutorEmail')}
-                            defaultValue={tutorEmail} className="input input-bordered bg-gray-100" readOnly />
+                            defaultValue={tutorEmail} className="input input-bordered w-full bg-gray-100" readOnly />
                     </div>
                     {/* Session Duration */}
                     <div>
                         <label className="block text-sm font-medium mb-1">Session Duration</label>
                         <input
                             type="text"{...register('sessionDuration')}
-                            defaultValue={sessionDuration} className="input input-bordered" required />
+                            defaultValue={sessionDuration} className="input input-bordered w-full" required />
                         {errors.sessionDuration && <span className="text-red-600 text-sm">Session Duration is required</span>}
                     </div>
                     {/* Registration Start Date */}
@@ -115,7 +114,7 @@ const UpdateSession = () => {
                         <label className="block text-sm font-medium mb-1">Registration Start Date</label>
                         <input
                             type="date"{...register('registrationStartDate')}
-                            defaultValue={registrationStartDate} className="input input-bordered" required />
+                            defaultValue={registrationStartDate} className="input input-bordered w-full" required />
                         {errors.registrationStartDate && <span className="text-red-600 text-sm">Registration Start Date is required</span>}
                     </div>
                     {/* Registration End Date */}
@@ -123,7 +122,7 @@ const UpdateSession = () => {
                         <label className="block text-sm font-medium mb-1">Registration End Date</label>
                         <input
                             type="date"{...register('registrationEndDate')}
-                            defaultValue={registrationEndDate} className="input input-bordered" required />
+                            defaultValue={registrationEndDate} className="input input-bordered w-full" required />
                         {errors.registrationEndDate && <span className="text-red-600 text-sm">Registration Start Date is required</span>}
                     </div>
                     {/* Class Start Date */}
@@ -131,7 +130,7 @@ const UpdateSession = () => {
                         <label className="block text-sm font-medium mb-1">Class Start Date</label>
                         <input
                             type="date"{...register('classStartDate')}
-                            defaultValue={classStartDate} className="input input-bordered" required />
+                            defaultValue={classStartDate} className="input input-bordered w-full" required />
                         {errors.classStartDate && <span className="text-red-600 text-sm">Class Start Date is required</span>}
                     </div>
                     {/* Class End Date */}
@@ -139,7 +138,7 @@ const UpdateSession = () => {
                         <label className="block text-sm font-medium mb-1">Class End Date</label>
                         <input
                             type="date"{...register('classEndDate')}
-                            defaultValue={classEndDate} className="input input-bordered" required />
+                            defaultValue={classEndDate} className="input input-bordered w-full" required />
                         {errors.classEndDate && <span className="text-red-600 text-sm">Class End Date is required</span>}
                     </div>
                     {/* Registration Fee */}
@@ -147,14 +146,14 @@ const UpdateSession = () => {
                         <label className="block text-sm font-medium mb-1">Registration Fee</label>
                         <input
                             type="number" {...register('registrationFee')}
-                            defaultValue={registrationFee} className="input input-bordered bg-gray-100" required />
+                            defaultValue={registrationFee} className="input input-bordered w-full bg-gray-100" required />
                     </div>
                     {/* Status */}
                     <div>
                         <label className="block text-sm font-medium mb-1">Status</label>
                         <select
                             {...register('status')}
-                            defaultValue={status} className="select select-bordered bg-gray-100"  >
+                            defaultValue={status} className="select select-bordered w-full bg-gray-100"  >
                             <option value="pending">Pending</option>
                             <option value="approved">Approved</option>
                             <option value="rejected">Rejected</option>

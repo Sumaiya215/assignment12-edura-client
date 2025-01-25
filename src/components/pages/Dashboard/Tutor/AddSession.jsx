@@ -26,12 +26,19 @@ const AddSession = () => {
             sessionDescription: data.sessionDescription
 
         }
-        const res = await axiosSecure.post('/sessions', dataInfo)
-        console.log(res.data)
-        if(res.data.insertedId){
-            reset();
-            toast.success('Session Successfully Created')
-        };
+
+        try{
+            const res = await axiosSecure.post('/sessions', dataInfo)
+            console.log(res.data)
+            if(res.data.insertedId){
+                reset();
+                toast.success('Session Successfully Created')
+            };
+        } catch(err){
+            console.error(err)
+            toast.error('Failed to create session')
+        }
+       
 
     }
 
@@ -40,7 +47,7 @@ const AddSession = () => {
         <Helmet>
             <title>Add Session | Edura</title>
         </Helmet>
-        <div className="max-w-xl mx-auto shadow-md rounded-lg p-6 mt-20 mb-12 ">
+        <div className="w-4/5 lg:w-[60%] mx-auto shadow-md rounded-lg p-6 mt-20 mb-12 ">
             <h1 className="text-2xl font bold text-center mb-6">Create Study Session</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Session Title */}
@@ -48,7 +55,7 @@ const AddSession = () => {
                     <label className="block text-sm font-medium mb-1">Session Title</label>
                     <input
                         type="text"{...register('sessionTitle')}
-                        placeholder="Enter session title" className="input input-bordered" required />
+                        placeholder="Enter session title" className="input input-bordered w-full" required />
                     {errors.sessionTitle && <span className="text-red-600 text-sm">Session Title is required</span>}
                 </div>
                 {/* Tutor Name */}
@@ -56,21 +63,21 @@ const AddSession = () => {
                     <label className="block text-sm font-medium mb-1">Tutor Name</label>
                     <input
                         type="text"{...register('tutorName')}
-                        defaultValue={user?.displayName} className="input input-bordered bg-gray-100" readOnly />
+                        defaultValue={user?.displayName} className="input input-bordered w-full bg-gray-100" readOnly />
                 </div>
                 {/* Tutor Email */}
                 <div>
                     <label className="block text-sm font-medium mb-1">Tutor Email</label>
                     <input
                         type="text"{...register('tutorEmail')}
-                        defaultValue={user?.email} className="input input-bordered bg-gray-100" readOnly />
+                        defaultValue={user?.email} className="input input-bordered w-full bg-gray-100" readOnly />
                 </div>
                 {/* Session Duration */}
                 <div>
                     <label className="block text-sm font-medium mb-1">Session Duration</label>
                     <input
                         type="text"{...register('sessionDuration')}
-                        placeholder="duration... " className="input input-bordered" required />
+                        placeholder="duration... " className="input input-bordered w-full" required />
                     {errors.sessionDuration && <span className="text-red-600 text-sm">Session Duration is required</span>}
                 </div>
                 {/* Registration Start Date */}
@@ -78,7 +85,7 @@ const AddSession = () => {
                     <label className="block text-sm font-medium mb-1">Registration Start Date</label>
                     <input
                         type="date"{...register('registrationStartDate')}
-                        className="input input-bordered" required />
+                        className="input input-bordered w-full" required />
                     {errors.registrationStartDate && <span className="text-red-600 text-sm">Registration Start Date is required</span>}
                 </div>
                 {/* Registration End Date */}
@@ -86,7 +93,7 @@ const AddSession = () => {
                     <label className="block text-sm font-medium mb-1">Registration End Date</label>
                     <input
                         type="date"{...register('registrationEndDate')}
-                        className="input input-bordered" required />
+                        className="input input-bordered w-full" required />
                     {errors.registrationEndDate && <span className="text-red-600 text-sm">Registration Start Date is required</span>}
                 </div>
                 {/* Class Start Date */}
@@ -94,7 +101,7 @@ const AddSession = () => {
                     <label className="block text-sm font-medium mb-1">Class Start Date</label>
                     <input
                         type="date"{...register('classStartDate')}
-                        className="input input-bordered" required />
+                        className="input input-bordered w-full" required />
                     {errors.classStartDate && <span className="text-red-600 text-sm">Class Start Date is required</span>}
                 </div>
                 {/* Class End Date */}
@@ -102,7 +109,7 @@ const AddSession = () => {
                     <label className="block text-sm font-medium mb-1">Class End Date</label>
                     <input
                         type="date"{...register('classEndDate')}
-                        className="input input-bordered" required />
+                        className="input input-bordered w-full" required />
                     {errors.classEndDate && <span className="text-red-600 text-sm">Class End Date is required</span>}
                 </div>
                 {/* Registration Fee */}
@@ -110,14 +117,14 @@ const AddSession = () => {
                     <label className="block text-sm font-medium mb-1">Registration Fee</label>
                     <input
                         type="number" {...register('registrationFee')}
-                        defaultValue={0} className="input input-bordered bg-gray-100" readOnly />
+                        defaultValue={0} className="input input-bordered w-full bg-gray-100" readOnly />
                 </div>
                 {/* Status */}
                 <div>
                     <label className="block text-sm font-medium mb-1">Status</label>
                     <select
                        {...register('status')}
-                           className="select select-bordered bg-gray-100"  >
+                           className="select select-bordered w-full bg-gray-100"  >
                         <option value="pending">Pending</option>
                         <option value="approved">Approved</option>
                         <option value="rejected">Rejected</option>
@@ -133,7 +140,7 @@ const AddSession = () => {
                 </div>
                 {/* Submit Button */}
                 <div className="md:col-span-2">
-                    <button type="submit" className="btn text-white bg-fuchsia-600 w-full">Create Session</button>
+                    <button type="submit" className="btn text-base text-white bg-fuchsia-600 w-full">Create Session</button>
                 </div>
             </form>
         </div>
