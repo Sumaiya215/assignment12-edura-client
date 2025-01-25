@@ -1,6 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "../../Home/Banner/Banner";
 
+import Tutors from "../../Home/Tutors/Tutors";
+import PopularSessions from "../../Home/PopularSessions/PopularSessions";
+
 
 const Home = () => {
     return (
@@ -9,6 +12,8 @@ const Home = () => {
                 <title>Home | Edura</title>
             </Helmet>
            <Banner></Banner>
+           <PopularSessions></PopularSessions>
+           <Tutors></Tutors>
         </div>
     );
 };

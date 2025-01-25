@@ -3,13 +3,15 @@ import logo from '../../../assets/logo .png'
 const Footer = () => {
     return (
         <div>
-            <footer className="footer footer-center bg-slate-700 text-primary-content p-10">
+            <footer className="footer footer-center bg-slate-700 text-primary-content pt-4 pb-4">
                 <aside>
-                    <img src={logo} alt="" />
-                    <p className="font-bold text-3xl">
-                       EDURA  
-                    </p>
-                    <p className='text-base'>It is a long established fact that a reader will be distracted</p>
+                    <div className='flex gap-1 items-center'>
+                        <img src={logo} alt="" />
+                        <p className="font-bold text-xl">
+                            EDURA
+                        </p>
+                    </div>
+
                     <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
                 </aside>
                 <nav>

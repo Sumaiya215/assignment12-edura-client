@@ -31,7 +31,7 @@ const Banner = () => {
                     </motion.p>
                     <motion.button
                         animate={{ x: 50 }} transition={{ duration: 3, delay: 1, ease: 'easeOut', repeat: Infinity }}
-                        className="btn btn-primary">Get Started</motion.button>
+                        className="btn btn-primary text-base font-semibold">Get Started</motion.button>
                 </div>
             </div>
         </div>
