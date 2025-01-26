@@ -24,6 +24,8 @@ import AllSessions from "../components/pages/Dashboard/Admin/AllSessions";
 import AllMaterials from "../components/pages/Dashboard/Admin/AllMaterials";
 import UpdateSession from "../components/pages/Dashboard/Admin/UpdateSession";
 import UpdateMaterials from "../components/pages/Dashboard/Tutor/UpdateMaterials";
+import SessionDetails from "../components/pages/Home/SessionDetails";
+import Payment from "../components/pages/Home/Payment";
 
  export const router = createBrowserRouter([
     {
@@ -33,7 +35,16 @@ import UpdateMaterials from "../components/pages/Dashboard/Tutor/UpdateMaterials
         {
             path:'/',
             element:<Home></Home>
+        },
+        {
+          path:'sessionDetails/:id',
+          element:<PrivateRoute><SessionDetails></SessionDetails></PrivateRoute>
+        },
+        {
+          path:'payment',
+          element:<PrivateRoute><Payment></Payment></PrivateRoute>
         }
+        
       ],
     },
     {

@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
 
 
 const PopularSessionCard = ({ sessionInfo }) => {
-    const { sessionTitle,
+    const {
+        _id,
+        sessionTitle,
         sessionDescription,
         registrationStartDate,
         registrationEndDate }
@@ -25,7 +28,10 @@ const PopularSessionCard = ({ sessionInfo }) => {
                         <button className={`btn btn-sm btn-secondary  ${sessionStatus(registrationStartDate, registrationEndDate)}`}>
                             {sessionStatus(registrationStartDate, registrationEndDate)}
                         </button>
-                        <button className="btn btn-sm btn-primary font-semibold">Read More</button>
+                        <Link to={`/sessionDetails/${_id}`}>
+                            <button className="btn btn-sm btn-primary font-semibold">
+                             Read More</button>
+                        </Link>
                     </div>
                 </div>
             </div>
