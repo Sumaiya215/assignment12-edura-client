@@ -35,8 +35,10 @@ const SessionDetails = () => {
 
     if (loadingSession || loadingReviews) return <span className="loading loading-bars loading-md"></span>
     const {
+        _id,
         sessionTitle,
         tutorName,
+        tutorEmail,
         sessionDescription,
         registrationStartDate,
         registrationEndDate,
@@ -55,7 +57,10 @@ const SessionDetails = () => {
             try{
                 const {data} = axiosSecure.post('/bookings', {
                     sessionId: session._id,
-                    studentId: user?.id,
+                    studentEmail: user?.email,
+                    tutorEmail: session.tutorEmail,
+                    price: session.registrationFee,
+                    date: new Date()
                 })
                 toast.success('Session Booked Successfully!');
                 navigate('/dashboard/view-session');
@@ -66,7 +71,7 @@ const SessionDetails = () => {
             }
         }
         else {
-            navigate('/payment');
+            navigate(`/payment?sessionId=${_id}&amount=${registrationFee}&tutorEmail=${tutorEmail}`);
         }
     }
 
