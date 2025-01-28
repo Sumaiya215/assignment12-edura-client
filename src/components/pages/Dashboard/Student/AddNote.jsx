@@ -44,7 +44,7 @@ const AddNote = () => {
                     <label className="label">
                         <span className="label-text font-medium">Email</span>
                     </label>
-                    <input type="email"  defaultValue={user?.email} className="input  input-bordered" required />
+                    <input type="email"  defaultValue={user?.email} className="input  input-bordered" readOnly />
                 </div>
                 <div className="form-control">
                     <label className="label">

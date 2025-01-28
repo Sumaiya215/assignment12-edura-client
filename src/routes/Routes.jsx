@@ -27,6 +27,7 @@ import UpdateMaterials from "../components/pages/Dashboard/Tutor/UpdateMaterials
 import SessionDetails from "../components/pages/Home/SessionDetails";
 import Payment from "../components/pages/Home/Payment";
 import BookingDetails from "../components/pages/Dashboard/Student/BookingDetails";
+import UpdateNote from "../components/pages/Dashboard/Student/UpdateNote";
 
  export const router = createBrowserRouter([
     {
@@ -76,6 +77,10 @@ import BookingDetails from "../components/pages/Dashboard/Student/BookingDetails
           {
             path:'manage-notes',
             element:<StudentRoute><ManageNotes></ManageNotes></StudentRoute>
+          },
+          {
+            path:'myNotes/:id',
+            element:<StudentRoute><UpdateNote></UpdateNote></StudentRoute>
           },
           {
             path:'view-materials',

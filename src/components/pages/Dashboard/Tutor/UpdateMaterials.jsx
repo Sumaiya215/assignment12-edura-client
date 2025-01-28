@@ -7,7 +7,6 @@ import { imageUpload } from "../../../../api/utils";
 
 
 const UpdateMaterials = () => {
-
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();

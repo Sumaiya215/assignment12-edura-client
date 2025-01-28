@@ -25,7 +25,7 @@ const BookedSession = () => {
                 <title>View Booked Session</title>
             </Helmet>
             <div className="w-11/12 mx-auto mt-12 mb-22">
-                <h1 className="text-xl font-semibold mb-6 mt-6">Booked Sessions {bookings.length}</h1>
+                <h1 className="text-xl font-semibold mb-6 mt-6">Booked Sessions </h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {
                         bookings?.length ? (
