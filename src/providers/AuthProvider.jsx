@@ -57,7 +57,7 @@ useEffect(() =>{
         setUser(currentUser)
         console.log(currentUser);
         if(currentUser){
-            const userInfo = {email: currentUser.email}
+            const userInfo = {email: currentUser?.email}
             axiosPublic.post('/jwt', userInfo)
             .then(res =>{
                 if(res.data.token){

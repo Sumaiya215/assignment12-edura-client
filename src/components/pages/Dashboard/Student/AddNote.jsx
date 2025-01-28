@@ -22,7 +22,7 @@ const AddNote = () => {
             }
 
             try{
-                const {data} = await axiosSecure.post('/notes', note)
+                const {data} = await axiosSecure.post('/notes', {note})
                 toast.success('Notes added successfully');
                 form.reset();
                 navigate('/dashboard/manage-notes')
