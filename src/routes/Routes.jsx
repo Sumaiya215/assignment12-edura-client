@@ -26,6 +26,7 @@ import UpdateSession from "../components/pages/Dashboard/Admin/UpdateSession";
 import UpdateMaterials from "../components/pages/Dashboard/Tutor/UpdateMaterials";
 import SessionDetails from "../components/pages/Home/SessionDetails";
 import Payment from "../components/pages/Home/Payment";
+import BookingDetails from "../components/pages/Dashboard/Student/BookingDetails";
 
  export const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ import Payment from "../components/pages/Home/Payment";
           {
             path:'view-session',
             element:<StudentRoute><BookedSession></BookedSession></StudentRoute>
+          },
+          {
+            path:'bookingDetails/:id',
+            element:<StudentRoute><BookingDetails></BookingDetails></StudentRoute>
           },
           {
             path:'add-note',

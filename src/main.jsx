@@ -12,6 +12,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import SessionProvider from './providers/SessionProvider';
 
 const queryClient = new QueryClient()
 
@@ -20,7 +21,9 @@ createRoot(document.getElementById('root')).render(
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <HelmetProvider>
-          <RouterProvider router={router} />
+          <SessionProvider>
+            <RouterProvider router={router} />
+          </SessionProvider>
           <Toaster />
         </HelmetProvider>
       </QueryClientProvider>

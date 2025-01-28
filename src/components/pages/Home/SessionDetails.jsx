@@ -6,6 +6,8 @@ import useAdmin from "../../../hooks/useAdmin";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
+import { useSession } from "../../../providers/SessionProvider";
+
 
 const SessionDetails = () => {
     const axiosSecure = useAxiosSecure();
@@ -14,6 +16,7 @@ const SessionDetails = () => {
     const {user} = useAuth();
     const { id } = useParams();
     const navigate = useNavigate();
+    const {setSessionData} = useSession();
     const { sessionId } = useParams();
     //session
     const { data: session = {}, isLoading: loadingSession } = useQuery({
@@ -53,14 +56,25 @@ const SessionDetails = () => {
     && new Date(registrationStartDate) <= new Date() ;
 
     const handleBookNow = async () => {
+        const paymentInfo = {
+            sessionId: session._id,
+            sessionTitle: session. sessionTitle,
+            tutorName: session.tutorName,
+            tutorEmail: session.tutorEmail,
+            sessionDescription: session.sessionDescription,
+            registrationStartDate: session.registrationStartDate,
+            registrationEndDate: session.registrationEndDate,
+            classStartDate: session.classStartDate,
+            classEndDate: session.classEndDate,
+            sessionDuration: session.sessionDuration,
+            studentEmail: user?.email,    
+            price: session.registrationFee,
+            date: new Date()
+        }
         if (registrationFee === 0){
             try{
                 const {data} = axiosSecure.post('/bookings', {
-                    sessionId: session._id,
-                    studentEmail: user?.email,
-                    tutorEmail: session.tutorEmail,
-                    price: session.registrationFee,
-                    date: new Date()
+                   paymentInfo
                 })
                 toast.success('Session Booked Successfully!');
                 navigate('/dashboard/view-session');
@@ -71,7 +85,8 @@ const SessionDetails = () => {
             }
         }
         else {
-            navigate(`/payment?sessionId=${_id}&amount=${registrationFee}&tutorEmail=${tutorEmail}`);
+            setSessionData(session);
+            navigate(`/payment?sessionId=${_id}&amount=${registrationFee}`);
         }
     }
 
