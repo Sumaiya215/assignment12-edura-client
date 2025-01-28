@@ -57,7 +57,7 @@ const ManageNotes = () => {
                                     <td>{note.description}</td>
                                     <td>
                                         <Link to={`/dashboard/myNotes/${note._id}`}>
-                                            <button className="btn btn-xs bg-purple-300 text-white">
+                                            <button className="btn btn-xs btn-outline btn-accent ">
                                                 Update
                                             </button>
                                         </Link>
@@ -66,7 +66,7 @@ const ManageNotes = () => {
                                     <td>
                                         <button
                                             onClick={() => handleDelete(note._id)}
-                                            className="btn btn-xs bg-red-300 text-gray-400">
+                                            className="btn btn-xs btn-outline btn-error">
                                             Delete
                                         </button>
                                     </td>
