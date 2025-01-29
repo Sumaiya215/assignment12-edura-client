@@ -10,12 +10,11 @@ const UpdateMaterials = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
-    // get a specific material
+    
     const { data: material = [], isLoading } = useQuery({
         queryKey: ['material', id],
         queryFn: async () => {
             const { data } = await axiosSecure(`/material/${id}`)
-            // console.log(data)
             return data;
         }
     });

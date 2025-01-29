@@ -1,4 +1,4 @@
-import { useQuery} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
@@ -31,18 +31,18 @@ const StudyMaterials = () => {
             const { data } = await axiosSecure(`/my-materials/${selectedSession}`)
             // console.log("response", data)
             return data;
-            
+
         },
 
         enabled: !!selectedSession,
 
     })
-   
 
-   
-    if (loadingSessions ) return <span className="loading loading-bars loading-md"></span>
-    if(loadingMaterials) return <span className="loading loading-bars loading-md"></span>
-    
+
+
+    if (loadingSessions) return <span className="loading loading-bars loading-md"></span>
+    if (loadingMaterials) return <span className="loading loading-bars loading-md"></span>
+
     return (
         <>
             <Helmet>
@@ -55,12 +55,12 @@ const StudyMaterials = () => {
                         <h2 className="text-lg font-medium">Booked Sessions</h2>
                         <ul className="border rounded-md p-2">
                             {
-                                
-                                    bookedSessions.map(session => <li key={session._id}
-                                        onClick={() => handleSessionClick(session.sessionId)}> {session.sessionTitle}
-                                    </li>)
 
-                              
+                                bookedSessions?.map(session => <li key={session._id}
+                                    onClick={() => handleSessionClick(session.sessionId)}> {session.sessionTitle}
+                                </li>)
+
+
                             }
                         </ul>
                     </div>

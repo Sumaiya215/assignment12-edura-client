@@ -74,7 +74,7 @@ const UpdateSession = () => {
     return (
         <>
             <Helmet>
-                <title>Update Session | Edura</title>
+                <title>Update Session</title>
             </Helmet>
             <div className="w-4/5 lg:w-[60%] mx-auto shadow-md rounded-lg p-6 mt-20 mb-12 ">
                 <h1 className="text-2xl font bold text-center mb-6">Update Study Session</h1>
